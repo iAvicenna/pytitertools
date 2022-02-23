@@ -1,0 +1,21 @@
+this is a wrapper around the R package called titertools:
+
+>>https://github.com/shwilks/titertools
+
+Therefore you need to have R installed, the package above installed and also need to install
+rpy2 which mediates the connection between R and python. If using conda enviroments, you need to make sure rpy2 is configured correctly. My recommendation is to install R in base and rpy2 in whatever enviroment you 
+
+If installing rpy2 into a conda environment and R is installed in base then first install pip into the enviroment by (while in the environment)
+
+>>conda install pip
+
+then install rpy2 from the base (and not in the conda environment but while in the base)
+
+>>path_to_environment/bin/pip install rpy2
+
+later check that rpy2 uses the correct R installation by 
+
+>>python3 -m rpy2.situation
+
+if the installation is made from the base environment using pip, then this should print
+R RHOME as the R installed in the base. In not it might fail to find the titertools package that is installed in the R base.
