@@ -4,13 +4,8 @@
 import unittest
 import math
 import statistics
-import sys
-import os
+import pytitertools as ptt
 
-_PARENT_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-sys.path.append(_PARENT_PATH)
-
-import gmt
 
 class TestGMT(unittest.TestCase):
     
@@ -20,16 +15,16 @@ class TestGMT(unittest.TestCase):
         
         with self.assertRaises(AssertionError):    # test the test
             with self.assertRaises(ValueError):
-                gmt.gmt(titers)
+                ptt.gmt(titers)
         
         with self.assertRaises(ValueError):
-            gmt.gmt(titers, ci_method='test')
+            ptt.gmt(titers, ci_method='test')
             
         with self.assertRaises(ValueError):
-            gmt.gmt(titers, ci_level=1.2)
+            ptt.gmt(titers, ci_level=1.2)
             
         with self.assertRaises(ValueError):
-            gmt.gmt(titers=[20,40,100])
+            ptt.gmt(titers=[20,40,100])
             
         
             
@@ -47,7 +42,7 @@ class TestGMT(unittest.TestCase):
         mean = sum(log2_titers)/len(log2_titers)
         sd = statistics.stdev(log2_titers)
         
-        result1 = gmt.gmt(titers)
+        result1 = ptt.gmt(titers)
         
         with self.assertRaises(AssertionError):    # test the test
             self.assertAlmostEqual(0,result1['mean'],places=2)
@@ -57,7 +52,7 @@ class TestGMT(unittest.TestCase):
         #self.assertAlmostEqual(sd,result['sd'],places=2)
         
         titers = ['20','40']
-        result2 = gmt.gmt(titers)
+        result2 = ptt.gmt(titers)
         
         
         
